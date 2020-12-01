@@ -26,5 +26,5 @@ class Tracks {
     const tracks = await this.db.all(sql)
     return tracks
   }
-}
+} 
 export default Tracks
