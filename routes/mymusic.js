@@ -1,7 +1,10 @@
 
 import Router from 'koa-router'
 
-const router = new Router({ prefix: '/secure' })
+const router = new Router({ prefix: '/mymusic' })
+
+import Tracks from '../modules/tracks.js'
+const dbName = 'website.db'
 
 async function checkAuth(ctx, next) {
 	console.log('secure router middleware')
@@ -12,9 +15,15 @@ async function checkAuth(ctx, next) {
 
 router.use(checkAuth)
 
+/* pulling out the records*/
+
 router.get('/', async ctx => {
+  const tracks = await new Tracks(dbName)
 	try {
-		await ctx.render('secure', ctx.hbs)
+    const records = await tracks.all()
+    console.log(records)
+    ctx.hbs.records = records
+		await ctx.render('mymusic', ctx.hbs)
 	} catch(err) {
 		ctx.hbs.error = err.message
 		await ctx.render('error', ctx.hbs)
