@@ -30,4 +30,12 @@ router.get('/', async ctx => {
 	}
 })
 
+router.get('/add', async ctx => {
+ await ctx.render('add', ctx.hbs)   
+})
+
+router.post('/add', async ctx => {
+    console.log("adding a new track")
+    return ctx.redirect('/mymusic?msg=new track added')
+})
 export default router

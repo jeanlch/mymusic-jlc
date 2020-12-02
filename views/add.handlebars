@@ -4,7 +4,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>My Music - Home Page</title>
+		<title>My Music - Add</title>
 		<meta name="description" content="form to add new books">
 		<meta name="author" content="Mark Tyers">
 		<link href="{{host}}/style.css" type="text/css" rel="stylesheet" />
@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<header>
-		<h1>My Music Tracks</h1>
+		<h1>Upload Page</h1>
 		<a href="/logout">Log out</a>
 		</header>
 		{{#if msg}}
@@ -21,7 +21,7 @@
 			</aside>
 		{{/if}}
 		<main>
-    <table>
+            <table>
       <tr><th>Album Art</th><th>Song Name</th><th>Artist</th><th>Duration</th></tr>
       {{#each records}}
         <tr>
@@ -32,7 +32,14 @@
       </tr>
       {{/each}}
       </table>
+          <form method="post" action="/mymusic/add" enctype="multipart/form-data">
+              <p>
+                  <label for"track">Mp3 file</label><br />
+                  <input type="file" name="blabla" accept="image/*" />
+              </p>
+              
+            </form>
 		</main>
-        <a class="add" href="mymusic/add">Upload a new track</a>
+
 	</body>
 </html>
