@@ -24,6 +24,9 @@ class Tracks {
     const sql = 'SELECT users.user, tracks.* FROM tracks, users\
                   WHERE tracks.userid = users.id;'
     const tracks = await this.db.all(sql)
+    for (const index in tracks) {
+        if(tracks[index].art === null) tracks[index].art = 'avatar.png'
+    }
     return tracks
   }
 } 

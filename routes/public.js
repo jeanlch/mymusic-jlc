@@ -14,10 +14,14 @@ const dbName = 'website.db'
  */
 router.get('/', async ctx => {
 	try {
-		await ctx.render('index', ctx.hbs)
+        if(ctx.hbs.authorized) {
+            return ctx.redirect('/mymusic?msg=you are now logged in...')
+        } else {
+            return ctx.redirect('/login?msg=You need to log in')
+        }
 	} catch(err) {
-		await ctx.render('error', ctx.hbs)
-	}
+        await ctx.render('error', ctx.hbs)
+    }
 })
 
 

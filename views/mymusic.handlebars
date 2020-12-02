@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<header>
-		<h1>Secure Page</h1>
+		<h1>My Music Home Page</h1>
 		<a href="/logout">Log out</a>
 		</header>
 		{{#if msg}}
@@ -25,7 +25,7 @@
       <tr><th>Album Art</th><th>Song Name</th><th>Artist</th><th>Duration</th></tr>
       {{#each records}}
         <tr>
-          <td><img src="images/{{this.art}}" /></td>
+          <td><img src="public/avatars/{{this.art}}" /></td>
           <td>{{this.name}}</td>
           <td>{{this.artist}}</td>
           <td>{{this.durationm}}:{{this.durations}}</td>
