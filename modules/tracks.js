@@ -29,5 +29,16 @@ class Tracks {
     }
     return tracks
   }
-} 
+ 
+    async add(data){
+        console.log('ADD')
+        console.log(data)
+        return true
+    }
+    
+    async close () {
+        await this.db.close()
+    }
+}
+
 export default Tracks

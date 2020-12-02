@@ -146,7 +146,7 @@ legend {
 	padding: 0.6vw;
 }
 
-input, textarea {
+input:required, textarea {
 	box-sizing: border-box;
 }
 
@@ -154,9 +154,9 @@ input:focus {
 	outline:none;
 }
 
-/* input[type="file"] {
+/*input:required[type="file"] {
 	display: none;
-} */
+}*/
 
 input[type="submit"], .button, header > a, body > a, .custom-file-upload {
   background-color: grey;

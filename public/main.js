@@ -9,3 +9,4 @@ window.addEventListener('DOMContentLoaded', () => {
      document.querySelector('aside').hidden = true                   
     }, delay)
 })
+

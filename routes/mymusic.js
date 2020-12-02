@@ -35,7 +35,24 @@ router.get('/add', async ctx => {
 })
 
 router.post('/add', async ctx => {
-    console.log("adding a new track")
-    return ctx.redirect('/mymusic?msg=new track added')
+    const tracks = await new Tracks(dbName)
+    try {
+        ctx.request.body.account = ctx.session.userid
+        if(ctx.request.files.audiofile.name) {
+            ctx.request.body.filePath = ctx.request.files.audiofile.path
+            ctx.request.body.fileName = ctx.request.files.audiofile.name
+            ctx.request.body.fileType = ctx.request.files.audiofile.type
+        }
+        await tracks.add(ctx.request.body)
+        return ctx.redirect('/mymusic?msg=new track added') 
+    }
+    catch(err) {
+        console.log(err)
+        await ctx.render('error', ctx.hbs)
+    }
+    finally { 
+        tracks.close()
+    }
 })
+
 export default router
