@@ -25,18 +25,14 @@
       <tr><th>Album Art</th><th>Song Name</th><th>Artist</th><th>Duration</th></tr>
       {{#each records}}
         <tr>
-          <td><img src="/public/avatars/{{this.art}}" alt="album cover" /></td>
+          <td><img src="/public/data/{{this.art}}" alt="album cover" /></td>
           <td>{{this.name}}</td>
           <td>{{this.artist}}</td>
           <td>{{this.durationm}}:{{this.durations}}</td>
       </tr>
       {{/each}}
       </table>
-            <audio controls="true">
-                <source src="https://orlando-road.codio-box.uk/data/Bohemian.mp3" type="audio/mpeg" />
-                <source src="https://orlando-road.codio-box.uk/data/Bohemian.ogg" type="audio/ogg">
-                Your browser does not support the audio tag.
-              </audio>
+           
 		</main>
         <a class="add" href="mymusic/add">Upload a new track</a>
 	</body>

@@ -39,6 +39,7 @@
 	},
 	"devDependencies": {
 		"ava": "^3.13.0",
+		"ava-cli": "0.0.1",
 		"eslint": "^7.14.0",
 		"esm": "^3.2.25",
 		"jsdoc": "^3.6.5",

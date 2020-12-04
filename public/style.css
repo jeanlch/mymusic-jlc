@@ -155,18 +155,18 @@ input:focus {
 }
 
 input[type="file"] {
-	background-color: grey;
-  border: 2px solid grey;
-  color: white;
+	background-color: lightgray;
+  border: 1px solid grey;
+  color: black;
 	padding: 0.4vw 0.8vw;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-	font-size: 1.5vw;
+	font-size: 1vw;
 }
 
 input[type="submit"], .button, header > a, body > a, .custom-file-upload {
-  background-color: grey;
+  background-color: black;
   border: 2px solid grey;
   color: white;
 	padding: 0.4vw 0.8vw;
@@ -183,7 +183,7 @@ input[type="submit"]:hover, header > a:hover, .custom-file-upload:hover, .add:ho
 }
 
 input[type="text"], input[type="email"], input[type="password"], input[type="tel"], textarea, select {
-	font-size: 1.5vw;
+	font-size: 1vw;
 	width: 25vw;
 	border: 1px solid #CCC;
 	padding: 0.5vw;

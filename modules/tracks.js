@@ -28,7 +28,7 @@ class Tracks {
                   WHERE tracks.userid = users.id;'
     const tracks = await this.db.all(sql)
     for (const index in tracks) {
-        if(tracks[index].art === null) tracks[index].art = 'avatar.png'
+        if(tracks[index].art === null) tracks[index].art = 'https://orlando-road.codio-box.uk/public/avatars/avatar.png'
     }
     return tracks
   }
@@ -43,8 +43,8 @@ class Tracks {
             await fs.copy(data.filePath, `public/data/${filename}`)
         }
         try {
-            const sql = `INSERT INTO tracks(userid, name, artist, art, durationm, durations)\`
-                            VALUES(${data.account}, "${data.name}", "${data.artist}","${filename}","${data.durationm}","${data.durations}",)  `    
+            const sql = `INSERT INTO tracks(userid, name, artist, art, durationm, durations)\
+                            VALUES(${data.account}, "${data.name}", "${data.artist}","${filename}","${data.durationm}","${data.durations}")`    
             console.log(sql)
             await this.db.run(sql)
             return true }
