@@ -1,4 +1,7 @@
+
 import sqlite from 'sqlite-async'
+import mime from 'mime-types'
+import fs from 'fs-extra'
 
 class Tracks {
   constructor(dbName = ':memory') {
@@ -33,7 +36,22 @@ class Tracks {
     async add(data){
         console.log('ADD')
         console.log(data)
-        return true
+        let filename
+        if(data.fileName) {
+            filename=`${Date.now()}.${mime.extension(data.fileType)}`
+            console.log(filename)
+            await fs.copy(data.filePath, `public/data/${filename}`)
+        }
+        try {
+            const sql = `INSERT INTO tracks(userid, name, artist, art, durationm, durations)\`
+                            VALUES(${data.account}, "${data.name}", "${data.artist}","${filename}","${data.durationm}","${data.durations}",)  `    
+            console.log(sql)
+            await this.db.run(sql)
+            return true }
+        catch(err) {
+            console.log(err)
+            throw(err)
+        }
     }
     
     async close () {

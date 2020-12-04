@@ -154,9 +154,16 @@ input:focus {
 	outline:none;
 }
 
-/*input:required[type="file"] {
-	display: none;
-}*/
+input[type="file"] {
+	background-color: grey;
+  border: 2px solid grey;
+  color: white;
+	padding: 0.4vw 0.8vw;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+	font-size: 1.5vw;
+}
 
 input[type="submit"], .button, header > a, body > a, .custom-file-upload {
   background-color: grey;
