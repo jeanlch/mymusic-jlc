@@ -87,8 +87,8 @@ article {
 }
 
 aside {
-	/* background-color: yellow;
-	float: right; */
+    background-color: gray;
+	float: right; 
 	width: 50vw;
 }
 
