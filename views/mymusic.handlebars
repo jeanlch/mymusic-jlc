@@ -22,17 +22,18 @@
 		{{/if}}
 		<main>
     <table>
-      <tr><th>Album Art</th><th>Song Name</th><th>Artist</th><th>Duration</th></tr>
+      <tr><th>Album Art</th><th>Song Name</th><th>Artist</th><th>Duration</th><th>Actions</th></tr>
       {{#each records}}
         <tr>
           <td><img src="/public/data/{{this.art}}" alt="album cover" /></td>
           <td>{{this.name}}</td>
           <td>{{this.artist}}</td>
           <td>{{this.durationm}}:{{this.durations}}</td>
+          <td><a href="/mymusic/details/{{this.id}}">details</a></td>
       </tr>
       {{/each}}
       </table>
-           
+
 		</main>
         <a class="add" href="mymusic/add">Upload a new track</a>
 	</body>

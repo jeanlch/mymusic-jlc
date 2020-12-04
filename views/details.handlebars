@@ -1,0 +1,30 @@
+
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Details - {{track.name}} {{track.artist}}</title>
+        <meta name="description" content="form to add new books">
+        <meta name="author" content="lechevalij">
+        <link href="{{host}}/style.css" type="text/css" rel="stylesheet" />
+        <script type="module" src="{{host}}/main.js"></script>
+    </head>
+    <body>
+        <header>
+        <h1> Details - {{track.name}} {{track.artist}}</h1>
+            <a href="/logout">Log out</a>
+        </header>
+        {{#if msg}}
+        <aside>
+            <p class="msg">{{msg}}</p>
+        </aside>
+        {{/if}}
+        <main>
+            <p> Song info here {{id}}</p>
+        </main>
+        <aside class="fixed top left">
+            <button class="back">Back</button>
+        </aside>
+    </body>
+</html>

@@ -30,6 +30,20 @@ router.get('/', async ctx => {
 	}
 })
 
+router.get('/details/:id', async ctx => {
+    const tracks = await new Tracks(dbName)
+    try {
+        console.log(`record: ${ctx.params.id}`)
+        ctx.hbs.track = await tracks.getByID(ctx.params.id)
+        console.log(ctx.hbs)
+        ctx.hbs.id = ctx.params.id
+        await ctx.render('details', ctx.hbs)
+    } catch(err) {
+        console.log(err)
+        await ctx.render('error',ctx.hbs)
+    }
+})
+
 router.get('/add', async ctx => {
  await ctx.render('add', ctx.hbs)   
 })

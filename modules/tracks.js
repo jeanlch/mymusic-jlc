@@ -32,6 +32,22 @@ class Tracks {
     }
     return tracks
   }
+    
+    
+   async getByID(id) {
+       try {
+           const sql = `SELECT users.user, tracks.* FROM tracks, users\
+                        WHERE tracks.userid = users.id AND tracks.id = ${id};`
+           console.log(sql)
+           const track = await this.db.get(sql)
+           if(track.art === null) track.art = 'avatar.png'
+           return track
+       }   catch(err) {
+           console.log(err)
+               throw(err)
+           }
+       }
+   
  
     async add(data){
         console.log('ADD')
