@@ -13,8 +13,7 @@ class Tracks {
         name TEXT,\
         artist TEXT,\
         art TEXT,\
-        durationm INTEGER,\
-        durations INTEGER,\
+        duration INTEGER,\
         FOREIGN KEY(userid) REFERENCES users(id)\
       );'
       await this.db.run(sql)
@@ -59,8 +58,8 @@ class Tracks {
             await fs.copy(data.filePath, `public/data/${filename}`)
         }
         try {
-            const sql = `INSERT INTO tracks(userid, name, artist, art, durationm, durations)\
-                            VALUES(${data.account}, "${data.name}", "${data.artist}","${filename}","${data.durationm}","${data.durations}")`    
+            const sql = `INSERT INTO tracks(userid, name, artist, art, duration)\
+                            VALUES(${data.account}, "${data.name}", "${data.artist}","${filename}", "${data.duration}")`    
             console.log(sql)
             await this.db.run(sql)
             return true }
