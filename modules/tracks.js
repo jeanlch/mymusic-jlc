@@ -30,7 +30,7 @@ class Tracks {
                   WHERE tracks.userid = users.id;'
     const tracks = await this.db.all(sql)
     for (const index in tracks) {
-        if(tracks[index].art === null) tracks[index].art = 'avatar.png'
+        if(tracks[index].art === null) tracks[index].art = 'https://orlando-road.codio-box.uk/public/data/testimage.jpg'
         const seconds = tracks[index].duration
         const min = Math.floor(seconds % 3600 / 60)
         const sec = Math.floor(seconds % 3600 % 60)
@@ -75,13 +75,13 @@ class Tracks {
             const ext = mime.extension(picture.format)
             const artwork = picture.data
             const buffer = Buffer.from(artwork, 'base64')
-            const title = metadata.common.title.split(' ').join(' ')
+            const title = metadata.common.title.split(' ').join('_')
 			const artist = metadata.common.artist.split(' ').join(' ')
             const duration = metadata.format.duration
             await fs.writeFile(`data/${title}.${ext}`, buffer)
             const sql = `INSERT INTO tracks(userid, name, artist, art, duration)\
                             VALUES(${data.account}, "${title}", 
-                                "${artist}","${picture}", "${duration}")`   
+                                "${artist}","${title}.${ext}", "${duration}")`   
             console.log(sql)
             await this.db.run(sql)
             }
