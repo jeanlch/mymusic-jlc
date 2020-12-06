@@ -31,6 +31,10 @@ class Tracks {
     const tracks = await this.db.all(sql)
     for (const index in tracks) {
         if(tracks[index].art === null) tracks[index].art = 'avatar.png'
+        const seconds = tracks[index].duration
+        const min = Math.floor(seconds % 3600 / 60)
+        const sec = Math.floor(seconds % 3600 % 60)
+        tracks[index].duration = min + ":" + sec
     }
     return tracks
   }
