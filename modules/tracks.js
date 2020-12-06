@@ -2,6 +2,9 @@
 import sqlite from 'sqlite-async'
 import mime from 'mime-types'
 import fs from 'fs-extra'
+import mm from 'music-metadata'
+import util from 'util'
+
 
 class Tracks {
   constructor(dbName = ':memory') {
@@ -27,7 +30,7 @@ class Tracks {
                   WHERE tracks.userid = users.id;'
     const tracks = await this.db.all(sql)
     for (const index in tracks) {
-        if(tracks[index].art === null) tracks[index].art = 'https://orlando-road.codio-box.uk/public/avatars/avatar.png'
+        if(tracks[index].art === null) tracks[index].art = 'avatar.png'
     }
     return tracks
   }
@@ -46,28 +49,45 @@ class Tracks {
                throw(err)
            }
        }
-   
- 
+    
+    
     async add(data){
         console.log('ADD')
         console.log(data)
         let filename
+        let metadata
+        let tags
         if(data.fileName) {
             filename=`${Date.now()}.${mime.extension(data.fileType)}`
             console.log(filename)
+            metadata = await mm.parseFile(data.filePath)
+            const options = { showHidden: false, depth: null }
+            tags = util.inspect(metadata, options)
             await fs.copy(data.filePath, `public/data/${filename}`)
         }
         try {
+            if(metadata.common.picture[0]) {
+            const picture = metadata.common.picture[0]
+            const ext = mime.extension(picture.format)
+            const artwork = picture.data
+            const buffer = Buffer.from(artwork, 'base64')
+            const title = metadata.common.title.split(' ').join(' ')
+			const artist = metadata.common.artist.split(' ').join(' ')
+            const duration = metadata.format.duration
+            await fs.writeFile(`data/${title}.${ext}`, buffer)
             const sql = `INSERT INTO tracks(userid, name, artist, art, duration)\
-                            VALUES(${data.account}, "${data.name}", "${data.artist}","${filename}", "${data.duration}")`    
+                            VALUES(${data.account}, "${title}", 
+                                "${artist}","${picture}", "${duration}")`   
             console.log(sql)
             await this.db.run(sql)
+            }
             return true }
         catch(err) {
             console.log(err)
             throw(err)
         }
-    }
+    } 
+
     
     async close () {
         await this.db.close()
@@ -75,3 +95,6 @@ class Tracks {
 }
 
 export default Tracks
+
+
+
