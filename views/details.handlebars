@@ -12,7 +12,7 @@
     </head>
     <body>
         <header>
-        <h1> Details - {{track.name}} {{track.artist}}</h1>
+        <h1> {{track.name}} by {{track.artist}}</h1>
             <a href="/logout">Log out</a>
         </header>
         {{#if msg}}
@@ -21,7 +21,11 @@
         </aside>
         {{/if}}
         <main>
-            <p> Song info here {{id}}</p>
+            <h4>Play {{track.name}} :</h4>
+            <audio controls="true">
+                <source src="https://orlando-road.codio-box.uk/public/data/{{track.mp3file}}" type="audio/mpeg" />
+                Your browser does not support the audio tag.
+              </audio>
         </main>
             <button class="back">Back</button>
     </body>

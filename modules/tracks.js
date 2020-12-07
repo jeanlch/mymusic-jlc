@@ -17,6 +17,7 @@ class Tracks {
         artist TEXT,\
         art TEXT,\
         duration INTEGER,\
+        mp3file TEXT,\
         FOREIGN KEY(userid) REFERENCES users(id)\
       );'
       await this.db.run(sql)
@@ -46,7 +47,12 @@ class Tracks {
                         WHERE tracks.userid = users.id AND tracks.id = ${id};`
            console.log(sql)
            const track = await this.db.get(sql)
+           const tracks = await this.db.all(sql)
            if(track.art === null) track.art = 'avatar.png'
+           const seconds = tracks.duration
+           const min = Math.floor(seconds % 3600 / 60)
+           const sec = Math.floor(seconds % 3600 % 60)
+           tracks.duration = min + ":" + sec
            return track
        }   catch(err) {
            console.log(err)
@@ -61,12 +67,14 @@ class Tracks {
         let filename
         let metadata
         let tags
+        let mp3path
         if(data.fileName) {
             filename=`${Date.now()}.${mime.extension(data.fileType)}`
             console.log(filename)
             metadata = await mm.parseFile(data.filePath)
             const options = { showHidden: false, depth: null }
             tags = util.inspect(metadata, options)
+            mp3path = filename
             await fs.copy(data.filePath, `public/data/${filename}`)
         }
         try {
@@ -79,9 +87,9 @@ class Tracks {
 			const artist = metadata.common.artist.split(' ').join(' ')
             const duration = metadata.format.duration
             await fs.writeFile(`data/${title}.${ext}`, buffer)
-            const sql = `INSERT INTO tracks(userid, name, artist, art, duration)\
+            const sql = `INSERT INTO tracks(userid, name, artist, art, duration, mp3file)\
                             VALUES(${data.account}, "${title}", 
-                                "${artist}","${title}.${ext}", "${duration}")`   
+                                "${artist}","${title}.${ext}", "${duration}", "${mp3path}")`   
             console.log(sql)
             await this.db.run(sql)
             }

@@ -11,10 +11,10 @@ aside {
 	background-color: yellow;
 }
 .msg {
-	border: 1px solid red;
+	border: 1px solid blue;
 	font-weight: bold;
 	background-color: white;
-	color: red;
+	color: black;
 	padding: 1em;
 	margin: 2em;
 	position: fixed;
@@ -253,7 +253,7 @@ table {
 }
 
 table img {
-	width: 100px;
+	width: 140px;
 }
 
 tr:nth-child(odd) {
