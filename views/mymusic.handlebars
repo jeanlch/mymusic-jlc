@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<header>
-		<h1>My Music Tracks</h1>
+		<h1>&#127925 My Music Tracks &#127925</h1>
 		<a href="/logout">Log out</a>
 		</header>
 		{{#if msg}}
@@ -21,8 +21,10 @@
 			</aside>
 		{{/if}}
 		<main>
+            <h4>Click either on the title or the artist of the song you wish to listen to
+                or know some details &#128071 :</h4>
     <table>
-      <tr><th>Album Art</th><th>Song Name</th><th>Artist</th><th>Duration</th></tr>
+      <tr><th>Album Art</th><th>Song Title</th><th>Artist</th><th>Duration</th></tr>
       {{#each records}}
         <tr>
           <td><img src="https://orlando-road.codio-box.uk/data/{{this.art}}" alt="album cover" /></td>

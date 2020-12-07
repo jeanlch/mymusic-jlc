@@ -23,7 +23,7 @@ router.get('/', async ctx => {
     const records = await tracks.all()
     console.log(records)
     ctx.hbs.records = records
-		await ctx.render('mymusic', ctx.hbs)
+	await ctx.render('mymusic', ctx.hbs)
 	} catch(err) {
 		ctx.hbs.error = err.message
 		await ctx.render('error', ctx.hbs)
