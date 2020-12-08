@@ -177,6 +177,8 @@ input[type="submit"], .button, header > a, body > a, .custom-file-upload {
 	/* border-radius: 0.6vw; */
 }
 
+
+
 input[type="submit"]:hover, header > a:hover, .custom-file-upload:hover, .add:hover {
   color: grey;
   background-color: white;
@@ -301,4 +303,15 @@ button#add {
 button#add:hover {
 	background-color: white;
 	color: grey;
+}
+
+.back {
+    background-color: black;
+  border: 2px solid grey;
+  color: white;
+	padding: 0.4vw 0.8vw;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+	font-size: 1.5vw;
 }

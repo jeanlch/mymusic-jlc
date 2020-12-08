@@ -18,6 +18,7 @@ class Tracks {
         art TEXT,\
         duration INTEGER,\
         mp3file TEXT,\
+        tags TEXT,\
         FOREIGN KEY(userid) REFERENCES users(id)\
       );'
       await this.db.run(sql)
@@ -78,7 +79,6 @@ class Tracks {
             await fs.copy(data.filePath, `public/data/${filename}`)
         }
         try {
-            if(metadata.common.picture[0]) {
             const picture = metadata.common.picture[0]
             const ext = mime.extension(picture.format)
             const artwork = picture.data
@@ -87,12 +87,12 @@ class Tracks {
 			const artist = metadata.common.artist.split(' ').join(' ')
             const duration = metadata.format.duration
             await fs.writeFile(`data/${title}.${ext}`, buffer)
-            const sql = `INSERT INTO tracks(userid, name, artist, art, duration, mp3file)\
+            await fs.writeFile(`data/${title}.txt`, tags)
+            const sql = `INSERT INTO tracks(userid, name, artist, art, duration, mp3file, tags)\
                             VALUES(${data.account}, "${title}", 
-                                "${artist}","${title}.${ext}", "${duration}", "${mp3path}")`   
+                                "${artist}","${title}.${ext}", "${duration}", "${mp3path}","${title}.txt}")`   
             console.log(sql)
-            await this.db.run(sql)
-            }
+            await this.db.run(sql)  
             return true }
         catch(err) {
             console.log(err)
