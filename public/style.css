@@ -52,6 +52,11 @@ h3 {
 	margin-left: 0.6vw;
 }
 
+audio:hover {
+    transform: scale(1.1);
+}
+
+
 header > a {
 	margin-top: 3vw;
 	margin-right: 3vw;
@@ -255,7 +260,11 @@ table {
 }
 
 table img {
-	width: 140px;
+	width: 130px;
+}
+
+table img:hover {
+    transform: scale(1.1);
 }
 
 tr:nth-child(odd) {
