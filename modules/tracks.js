@@ -90,7 +90,7 @@ class Tracks {
             await fs.writeFile(`data/${title}.txt`, tags)
             const sql = `INSERT INTO tracks(userid, name, artist, art, duration, mp3file, tags)\
                             VALUES(${data.account}, "${title}", 
-                                "${artist}","${title}.${ext}", "${duration}", "${mp3path}","${title}.txt}")`   
+                                "${artist}","${title}.${ext}", "${duration}", "${mp3path}","${title}.txt")`   
             console.log(sql)
             await this.db.run(sql)  
             return true }
