@@ -65,17 +65,16 @@ class Accounts {
 		if(valid === false) throw new Error(`invalid password for account "${username}"`)
 		return record.id
 	}
-
-	async testSetup() {
+    
+	 async testSetup() {
 		// default password is "p455w0rd"
-		const defaultPassword = '$2b$10$gL33obKAFUT5DK3pEbh72OIHztsWBniBBh.PdeKOrF1yr5KFAsdZO'
 		const records = [
 			'CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, user TEXT, pass TEXT, email TEXT);',
-			`INSERT INTO users(user, pass, email) VALUES("bloggsj", "${defaultPassword}", "bloggs@gmail.com")`,
-			`INSERT INTO users(user, pass, email) VALUES("doej", "${defaultPassword}", "doej@gmail.com")`
+			`INSERT INTO users(user, pass, email) VALUES("bloggsj", "p455w0rd", "bloggs@gmail.com");`,
+			`INSERT INTO users(user, pass, email) VALUES("doej", "p455w0rd", "doej@gmail.com");`,
 		]
 		records.forEach( async sql => await this.db.run(sql))
-	}
+	} 
 
 	async close() {
 		await this.db.close()

@@ -74,3 +74,13 @@ fi
 ./node_modules/.bin/eslint .
 
 echo "  commit successful..."
+
+
+#Additional git hooks: Won't allow to commit if one test or more fail (running npm test)
+#npm test | grep failed  command displays nothing if all test pass
+
+test = npm test | grep failed 
+if [test!=NULL]; then
+   echo "Some test failed"
+   exit 1
+fi
